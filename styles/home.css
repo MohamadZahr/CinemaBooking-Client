@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #1b2d45;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #16263d;
+  padding: 15px 25px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.navbar .brand {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.navbar .user {
+  font-size: 0.95rem;
+  color: #dbe4f0;
+}
