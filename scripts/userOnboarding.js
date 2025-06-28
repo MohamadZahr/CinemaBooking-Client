@@ -70,9 +70,14 @@ loginForm.addEventListener("submit", async (e) => {
     if (response.data.status === 200) {
       messageDiv.style.color = "green";
       messageDiv.textContent = "Login successful!";
-      window.location.href = "../pages/home.html"; 
       localStorage.setItem("user", JSON.stringify(response.data.user));
       console.log("Logged in user:", response.data.user);
+
+      if(response.data.user.role === "admin") {
+        window.location.href = "../pages/adminHome.html"; 
+      } else {
+        window.location.href = "../pages/home.html"; 
+      }
     } else {
       messageDiv.style.color = "red";
       messageDiv.textContent = "Login failed: " + response.data.message;

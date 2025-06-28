@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - Showtime Management</title>
+    <link rel="stylesheet" href="../styles/adminHome.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="admin.js"></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="brand">SmartCinema Admin</div>
+    </nav>
+
+    <main class="container">
+      <div class="header">
+        <h2>Current Showtimes</h2>
+        <button id="add-showtime-btn">Add Showtime</button>
+      </div>
+
+      <table class="showtime-table">
+        <thead>
+          <tr>
+            <th>Movie</th>
+            <th>Auditorium</th>
+            <th>Time Slot</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+          </tr>
+        </thead>
+        <tbody id="showtime-body">
+          <!-- Showtimes will be injected here -->
+        </tbody>
+      </table>
+    </main>
+
+    <div class="modal" id="showtime-modal">
+      <div class="modal-content">
+        <h3>Add Showtime</h3>
+        <form id="showtime-form">
+          <label for="movie">Movie:</label>
+          <select id="movie" required></select>
+
+          <label for="auditorium">Auditorium:</label>
+          <select id="auditorium" required>
+            <option value="">-- Select Auditorium --</option>
+            <option value="1">Auditorium A</option>
+            <option value="2">Auditorium B</option>
+            <option value="3">Auditorium C</option>
+            <option value="4">Auditorium D</option>
+            <option value="5">Auditorium E</option>
+            <option value="6">Auditorium F</option>
+            <option value="7">Auditorium G</option>
+          </select>
+
+          <label for="time-slot">Time Slot:</label>
+          <select id="time-slot" required>
+            <option value="">-- Select Time Slot --</option>
+            <option>16:30 - 19:00</option>
+            <option>19:00 - 21:30</option>
+            <option>21:30 - 00:00</option>
+          </select>
+
+          <label for="start-date">Start Date:</label>
+          <input type="date" id="start-date" required />
+
+          <label for="end-date">End Date:</label>
+          <input type="date" id="end-date" required />
+
+          <div class="modal-actions">
+            <button type="submit">Save</button>
+            <button type="button" id="cancel-btn">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="../scripts/admin.js"></script>
+  </body>
+</html>
