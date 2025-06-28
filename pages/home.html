@@ -3,14 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Home</title>
+  <title>SmartCinema | Home</title>
   <link rel="stylesheet" href="../styles/home.css" />
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-  <nav class="navbar">
-    <div class="brand">SmartCinema</div>
-    <div class="user">Hello, <span id="username"></span></div>
-  </nav>
+  <header>
+    <div class="navbar">
+      <div class="brand">SmartCinema</div>
+      <button id="logoutBtn">Logout</button>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>🎬 Now Showing</h2>
+      <div class="carousel" id="now-showing"></div>
+    </section>
+
+    <section>
+      <h2>🎟️ Coming Soon</h2>
+      <div class="carousel" id="coming-soon"></div>
+    </section>
+  </main>
 
   <script src="../scripts/home.js"></script>
 </body>

@@ -1,27 +1,58 @@
 body {
   margin: 0;
-  padding: 0;
-  background-color: #1b2d45;
+  font-family: Arial, sans-serif;
+  background-color: #0f172a; /* Navy/Dark Blue */
   color: white;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .navbar {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  background-color: #16263d;
   padding: 15px 25px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  background-color: #1e293b;
+  align-items: center;
 }
 
-.navbar .brand {
-  font-size: 1.2rem;
+.brand {
+  font-size: 24px;
   font-weight: bold;
-  color: #ffffff;
 }
 
-.navbar .user {
-  font-size: 0.95rem;
-  color: #dbe4f0;
+button#logoutBtn {
+  background-color: #334155;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+h2 {
+  margin-left: 20px;
+}
+
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding: 10px 20px;
+}
+
+.movie-card {
+  min-width: 160px;
+  background-color: #1e293b;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  color: white;
+}
+
+.movie-card img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.movie-card p {
+  margin-top: 8px;
+  font-size: 14px;
 }
