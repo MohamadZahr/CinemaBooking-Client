@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   populateMovieDropdown();
+  loadShowtimes();
 
   document.getElementById("add-showtime-btn").addEventListener("click", () => {
     document.getElementById("showtime-modal").style.display = "flex";
@@ -21,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .addEventListener("submit", handleFormSubmit);
 });
 
-// ✅ Fetch latest movies for dropdown
+// ✅ Fetch movies for dropdown
 function populateMovieDropdown() {
   axios
     .get(
@@ -43,6 +44,39 @@ function populateMovieDropdown() {
     })
     .catch((error) => {
       console.error("Error fetching movies:", error);
+    });
+}
+
+// ✅ Load showtimes into table
+function loadShowtimes() {
+  axios
+    .get(
+      "http://localhost/cinemabooking/CinemaBooking-Server/Controllers/get_showtimes.php"
+    )
+    .then((response) => {
+      const tbody = document.getElementById("showtime-body");
+      tbody.innerHTML = "";
+
+      if (response.data.status === 200) {
+        response.data.showtimes.forEach((showtime) => {
+          const row = document.createElement("tr");
+
+          row.innerHTML = `
+            <td>${showtime.movie_title}</td>
+            <td>${showtime.auditorium_name}</td>
+            <td>${showtime.time_slot}</td>
+            <td>${showtime.start_date}</td>
+            <td>${showtime.end_date}</td>
+          `;
+
+          tbody.appendChild(row);
+        });
+      } else {
+        console.error("Failed to load showtimes:", response.data.error);
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching showtimes:", error);
     });
 }
 
@@ -68,7 +102,7 @@ function handleFormSubmit(e) {
         alert("Showtime created successfully!");
         document.getElementById("showtime-form").reset();
         document.getElementById("showtime-modal").style.display = "none";
-        // TODO: Optionally refresh showtimes table here
+        loadShowtimes(); // 🔁 Refresh table
       } else {
         alert("Error: " + response.data.error);
       }
