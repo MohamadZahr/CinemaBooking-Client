@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .addEventListener("submit", handleFormSubmit);
 });
 
-// ✅ Fetch movies for dropdown
+
 function populateMovieDropdown() {
   axios
     .get(
@@ -47,12 +47,9 @@ function populateMovieDropdown() {
     });
 }
 
-// ✅ Load showtimes into table
 function loadShowtimes() {
   axios
-    .get(
-      "http://localhost/cinemabooking/CinemaBooking-Server/Controllers/get_showtimes.php"
-    )
+    .get("http://localhost/cinemabooking/CinemaBooking-Server/Controllers/get_showtimes.php")
     .then((response) => {
       const tbody = document.getElementById("showtime-body");
       tbody.innerHTML = "";
@@ -67,12 +64,20 @@ function loadShowtimes() {
             <td>${showtime.time_slot}</td>
             <td>${showtime.start_date}</td>
             <td>${showtime.end_date}</td>
+            <td><button class="delete-btn" data-id="${showtime.id}">Delete</button></td>
           `;
 
           tbody.appendChild(row);
         });
-      } else {
-        console.error("Failed to load showtimes:", response.data.error);
+
+        document.querySelectorAll(".delete-btn").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            const id = e.target.getAttribute("data-id");
+            if (confirm("Are you sure you want to delete this showtime?")) {
+              deleteShowtime(id);
+            }
+          });
+        });
       }
     })
     .catch((error) => {
@@ -80,7 +85,27 @@ function loadShowtimes() {
     });
 }
 
-// ✅ Handle create showtime form submission
+
+function deleteShowtime(id) {
+  axios
+    .delete("http://localhost/cinemabooking/CinemaBooking-Server/Controllers/delete_showtime.php", {
+      data: { id: parseInt(id) },
+    })
+    .then((res) => {
+      if (res.data.status === 200) {
+        alert("Showtime deleted successfully!");
+        loadShowtimes();
+      } else {
+        alert("Failed to delete showtime.");
+      }
+    })
+    .catch((err) => {
+      console.error("Delete failed:", err);
+      alert("Server error while deleting.");
+    });
+}
+
+
 function handleFormSubmit(e) {
   e.preventDefault();
 
