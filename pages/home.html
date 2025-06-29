@@ -1,32 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SmartCinema | Home</title>
-  <link rel="stylesheet" href="../styles/home.css" />
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-</head>
-<body>
-  <header>
-    <div class="navbar">
-      <div class="brand">SmartCinema</div>
-      <button class="logoutBtn" id="logoutBtn">Logout</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SmartCinema | Home</title>
+    <link rel="stylesheet" href="../styles/home.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="navbar">
+        <div class="brand">SmartCinema</div>
+        <button class="logoutBtn" id="logoutBtn">Logout</button>
+      </div>
+    </header>
+
+    <main class="container">
+      <section>
+        <h2>🎬 Now Showing</h2>
+        <div class="carousel" id="now-showing"></div>
+      </section>
+
+      <section>
+        <h2>🎟️ Coming Soon</h2>
+        <div class="carousel" id="upcoming-movies"></div>
+      </section>
+    </main>
+    <div class="modal" id="modal">
+      <div class="modal-content">
+        <h2>Book Ticket</h2>
+      </div>
     </div>
-  </header>
 
-  <main class="container">
-    <section>
-      <h2>🎬 Now Showing</h2>
-      <div class="carousel" id="now-showing"></div>
-    </section>
-
-    <section>
-      <h2>🎟️ Coming Soon</h2>
-      <div class="carousel" id="coming-soon"></div>
-    </section>
-  </main>
-
-  <script src="../scripts/home.js"></script>
-</body>
+    <script src="../scripts/home.js"></script>
+  </body>
 </html>
