@@ -5,52 +5,30 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "../index.html";
     return;
   }
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  loadNowShowing();
-  loadComingSoon();
 
   document.getElementById("logoutBtn").addEventListener("click", () => {
     localStorage.clear();
     window.location.href = "../index.html";
   });
+
+  loadNowShowing();
 });
 
 function loadNowShowing() {
-  axios.get("../api/get_now_showing.php")
+  axios.get("http://localhost/cinemabooking/CinemaBooking-Server/Controllers/get_now_showing.php")
     .then(res => {
       const container = document.getElementById("now-showing");
       container.innerHTML = "";
 
-      if (res.data.status === 200) {
+      if (res.data.status === 200 && Array.isArray(res.data.now_showing)) {
         res.data.now_showing.forEach(movie => {
           container.appendChild(createMovieCard(movie));
         });
+      } else {
+        console.warn("Unexpected response format:", res.data);
       }
     })
     .catch(err => console.error("Error fetching now showing:", err));
-}
-
-function loadComingSoon() {
-  axios.get("../api/get_latest_movies.php")
-    .then(res => {
-      const container = document.getElementById("coming-soon");
-      container.innerHTML = "";
-
-      if (res.data.status === 200) {
-        const futureMovies = res.data.movies.filter(m => {
-          const release = new Date(m.release_date);
-          const today = new Date();
-          return release > today;
-        });
-
-        futureMovies.forEach(movie => {
-          container.appendChild(createMovieCard(movie));
-        });
-      }
-    })
-    .catch(err => console.error("Error fetching coming soon:", err));
 }
 
 function createMovieCard(movie) {
@@ -58,7 +36,11 @@ function createMovieCard(movie) {
   card.className = "movie-card";
 
   const img = document.createElement("img");
-  img.src = movie.poster_path || "https://via.placeholder.com/150x225?text=No+Image";
+  const posterPath = movie.poster_path
+    ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+    : "https://via.placeholder.com/150x225?text=No+Image";
+
+  img.src = posterPath;
   img.alt = movie.title;
 
   const title = document.createElement("p");
@@ -68,3 +50,4 @@ function createMovieCard(movie) {
   card.appendChild(title);
   return card;
 }
+

@@ -9,6 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
   populateMovieDropdown();
   loadShowtimes();
 
+  document.getElementById("logoutBtn").addEventListener("click", () => {
+    localStorage.clear();
+    window.location.href = "../index.html";
+  });
+
   document.getElementById("add-showtime-btn").addEventListener("click", () => {
     document.getElementById("showtime-modal").style.display = "flex";
   });
