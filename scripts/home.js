@@ -80,7 +80,7 @@ function createMovieCard(movie) {
 
   card.addEventListener("click", () => {
     localStorage.setItem("selectedMovie", JSON.stringify(movie));
-    document.getElementById("modal").style.display = "flex";
+    window.location.href = "booking.html";
   });
   return card;
 }
@@ -111,9 +111,3 @@ function createUpcomingMovieCard(movie) {
   return card;
 }
 
-window.addEventListener("click", (e) => {
-  const modal = document.getElementById("modal");
-  if (e.target === modal) {
-    modal.style.display = "none";
-  }
-});

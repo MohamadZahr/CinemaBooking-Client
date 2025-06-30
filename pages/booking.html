@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SmartCinema | Book Ticket</title>
+  <link rel="stylesheet" href="../styles/booking.css" />
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <div class="brand">SmartCinema</div>
+      <button class="logoutBtn" id="logoutBtn">Logout</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="details" id="movie-details"></section>
+
+    <section class="booking-form">
+      <h2>Book Your Seat</h2>
+      <form id="booking-form">
+        <label for="auditorium">Auditorium</label>
+        <select id="auditorium" required>
+          <option value="">-- Select Auditorium --</option>
+          <option value="1">Auditorium A</option>
+          <option value="2">Auditorium B</option>
+          <option value="3">Auditorium C</option>
+          <option value="4">Auditorium D</option>
+          <option value="5">Auditorium E</option>
+          <option value="6">Auditorium F</option>
+          <option value="7">Auditorium G</option>
+        </select>
+
+        <label for="seat">Seat</label>
+        <select id="seat" required>
+          <option value="">-- Select Seat --</option>
+          <!-- You can dynamically generate these later -->
+          <option>A1</option>
+          <option>A2</option>
+          <option>A3</option>
+          <option>B1</option>
+          <option>B2</option>
+        </select>
+
+        <label for="date">Date</label>
+        <input type="date" id="date" required />
+
+        <button type="submit">Confirm Booking</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="../scripts/booking.js"></script>
+</body>
+</html>
