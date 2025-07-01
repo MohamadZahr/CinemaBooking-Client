@@ -216,7 +216,6 @@ function submitBooking(seatId) {
     .then((res) => {
       if (res.data.status === 201) {
         alert("Booking confirmed successfully!");
-        // Optionally redirect to booking confirmation page
         window.location.href = "home.html";
       } else {
         alert("Booking failed: " + (res.data.error || "Unknown error"));

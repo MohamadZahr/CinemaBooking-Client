@@ -11,6 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "../index.html";
   });
 
+  document.getElementById("myBookingsBtn").addEventListener("click", () => {
+  window.location.href = "myBookings.html"; 
+});
+
+
   loadNowShowing();
   loadUpcomingMovies();
 });

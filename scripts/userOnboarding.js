@@ -21,7 +21,6 @@ showLoginBtn.addEventListener("click", () => {
   messageDiv.textContent = "";
 });
 
-// Handle signup
 signupForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -52,7 +51,6 @@ signupForm.addEventListener("submit", async (e) => {
   }
 });
 
-// Handle login
 loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 

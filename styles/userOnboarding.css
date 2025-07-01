@@ -1,4 +1,3 @@
-/* Reset some defaults */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -54,7 +53,6 @@ h2 {
   font-size: 1.25rem;
 }
 
-/* Inputs */
 input {
   display: block;
   width: 100%;
