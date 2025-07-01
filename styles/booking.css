@@ -98,6 +98,43 @@ body {
   background-color: #2563eb;
 }
 
+.seat-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.seat-button {
+  padding: 8px 0;
+  font-size: 0.85rem;
+  text-align: center;
+  border: none;
+  border-radius: 4px;
+  cursor: default;
+  background-color: #475569; /* default gray for unavailable */
+  color: white;
+  pointer-events: none;
+}
+
+.seat-button.standard {
+  background-color: #22c55e; /* green for standard */
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.seat-button.premium {
+  background-color: #facc15; /* yellow for premium */
+  color: #000;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.seat-button.selected {
+  outline: 3px solid #3b82f6;
+}
+
+
 /* Responsive side-by-side on larger screens */
 @media (min-width: 768px) {
   .container {
