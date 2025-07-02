@@ -160,8 +160,7 @@ function renderSeatGrid(seats) {
       if (seat) {
         btn.dataset.seatId = seat.id;
         btn.dataset.seatType = seat.seat_type;
-        
-        // Set price based on seat type
+
         const price = seat.seat_type === 'premium' ? 15.00 : 10.00;
         btn.dataset.price = price;
         
