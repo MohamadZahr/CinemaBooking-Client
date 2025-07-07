@@ -20,6 +20,10 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.clear();
     window.location.href = "../index.html";
   });
+  
+  document.getElementById("homeBtn").addEventListener("click", () => {
+    window.location.href = "home.html";
+  });
 
   document.getElementById("auditorium").addEventListener("change", (e) => {
     const selectedAuditorium = parseInt(e.target.value);

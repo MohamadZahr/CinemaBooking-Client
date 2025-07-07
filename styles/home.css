@@ -1,3 +1,4 @@
+
 * {
   margin: 0;
   padding: 0;
@@ -5,10 +6,11 @@
 }
 
 body {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
   background-color: #0f172a;
-  color: white;
+  color: #ffffff;
   line-height: 1.6;
+  padding-bottom: 50px;
 }
 
 .navbar {
@@ -16,85 +18,116 @@ body {
   justify-content: space-between;
   align-items: center;
   background-color: #1e293b;
-  color: white;
-  padding: 15px 30px;
-  font-size: 1.2rem;
-  font-weight: bold;
+  padding: 18px 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.brand {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #3b82f6;
 }
 
 .nav-buttons {
   display: flex;
-  gap: 10px;
+  gap: 12px;
+}
+
+.navBtn,
+.logoutBtn {
+  padding: 10px 18px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .navBtn {
   background-color: #3b82f6;
-  border: none;
   color: white;
-  padding: 8px 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: 600;
 }
 
 .navBtn:hover {
   background-color: #2563eb;
 }
 
-
 .logoutBtn {
   background-color: #ef4444;
-  border: none;
   color: white;
-  padding: 8px 16px;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
 .logoutBtn:hover {
   background-color: #dc2626;
 }
 
+.container {
+  padding: 30px 40px;
+}
 
 h2 {
-  margin-bottom: 10px;
-  color: #ffffff;
+  margin-bottom: 12px;
+  font-size: 1.4rem;
+  border-left: 4px solid #3b82f6;
+  padding-left: 10px;
+  color: #f8fafc;
 }
+
 
 .carousel {
   display: flex;
-  gap: 16px;
+  gap: 20px;
   overflow-x: auto;
-  padding: 20px 10px;
+  padding: 15px 5px 25px;
+  scroll-behavior: smooth;
+}
+
+.carousel::-webkit-scrollbar {
+  height: 6px;
+}
+
+.carousel::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 3px;
 }
 
 .movie-card {
   flex: 0 0 auto;
-  width: 200px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  text-align: center;
-  transition: transform 0.2s;
+  width: 190px;
+  background-color: #f8fafc;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
   cursor: pointer;
 }
 
 .movie-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
 }
 
 .movie-card img {
   width: 100%;
-  height: 225px;
+  height: 240px;
   object-fit: cover;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
 }
 
 .movie-card p {
-  margin: 10px;
-  font-weight: 500;
+  padding: 10px;
   font-size: 0.95rem;
+  font-weight: 500;
   color: #1e293b;
+  text-align: center;
 }
 
+.movie-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.release-date {
+  font-size: 0.85rem;
+  color: #475569;
+}
