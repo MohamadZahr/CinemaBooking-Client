@@ -1,3 +1,5 @@
+const BASE_URL = "http://localhost/CinemaBooking/CinemaBooking-Server";
+
 const signupForm = document.getElementById("signup-form");
 const loginForm = document.getElementById("login-form");
 const messageDiv = document.getElementById("message");
@@ -31,7 +33,7 @@ signupForm.addEventListener("submit", async (e) => {
   messageDiv.textContent = "Signing up...";
 
   try {
-    const response = await axios.post("http://localhost/cinemabooking/CinemaBooking-Server/Controllers/create_user.php", {
+    const response = await axios.post(`${BASE_URL}/Controllers/create_user.php`, {
       full_name: fullName,
       email: email,
       password: password
@@ -42,7 +44,7 @@ signupForm.addEventListener("submit", async (e) => {
       messageDiv.textContent = "Signup successful!";
     } else {
       messageDiv.style.color = "red";
-      messageDiv.textContent = "Signup failed: " + response.data.message;
+      messageDiv.textContent = "Signup failed: " + response.data.payload.message;
     }
   } catch (error) {
     console.error(error);
@@ -60,7 +62,7 @@ loginForm.addEventListener("submit", async (e) => {
   messageDiv.textContent = "Logging in...";
 
   try {
-    const response = await axios.post("http://localhost/cinemabooking/CinemaBooking-Server/Controllers/login.php", {
+    const response = await axios.post(`${BASE_URL}/login`, {
       email: email,
       password: password
     });
@@ -68,17 +70,17 @@ loginForm.addEventListener("submit", async (e) => {
     if (response.data.status === 200) {
       messageDiv.style.color = "green";
       messageDiv.textContent = "Login successful!";
-      localStorage.setItem("user", JSON.stringify(response.data.user));
-      console.log("Logged in user:", response.data.user);
+      localStorage.setItem("user", JSON.stringify(response.data.payload.user));
+      console.log("Logged in user:", response.data.payload.user);
 
-      if(response.data.user.role === "admin") {
+      if(response.data.payload.user.role === "admin") {
         window.location.href = "../pages/adminHome.html"; 
       } else {
         window.location.href = "../pages/home.html"; 
       }
     } else {
       messageDiv.style.color = "red";
-      messageDiv.textContent = "Login failed: " + response.data.message;
+      messageDiv.textContent = "Login failed: " + response.data.error;
     }
   } catch (error) {
     console.error(error);

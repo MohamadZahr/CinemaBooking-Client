@@ -1,3 +1,5 @@
+const BASE_URL = "http://localhost/CinemaBooking/CinemaBooking-Server";
+
 document.addEventListener("DOMContentLoaded", () => {
   const movie = JSON.parse(localStorage.getItem("selectedMovie"));
   const user = JSON.parse(localStorage.getItem("user"));
@@ -63,10 +65,10 @@ function displayMovieDetails(movie) {
 
 function loadAuditoriumsAndShowtimes(movieId) {
   axios
-    .get(`http://localhost/cinemabooking/CinemaBooking-Server/Controllers/get_showtimes.php?id=${movieId}`)
+    .get(`${BASE_URL}/showtimes?id=${movieId}`)
     .then((res) => {
-      if (res.data.status === 200 && Array.isArray(res.data.showtimes)) {
-        showtimes = res.data.showtimes;
+      if (res.data.status === 200 && Array.isArray(res.data.payload.showtimes)) {
+        showtimes = res.data.payload.showtimes;
 
         const uniqueAuditoriums = new Map();
         showtimes.forEach((s) => {
@@ -126,12 +128,12 @@ function checkFetchSeats() {
 
 function fetchAvailableSeats(date, auditoriumId, timeSlot) {
   axios
-    .get("http://localhost/cinemabooking/CinemaBooking-Server/Controllers/get_available_seats.php", {
+    .get(`${BASE_URL}/available_seats`, {
       params: { booking_date: date, auditorium_id: auditoriumId, time_slot: timeSlot }
     })
     .then((res) => {
       if (res.data.status === 200) {
-        renderSeatGrid(res.data.available_seats);
+        renderSeatGrid(res.data.payload.available_seats);
       }
     })
     .catch((err) => {
@@ -215,9 +217,9 @@ function submitBooking(seatId) {
 
   console.log("Booking Data:", bookingData);
   axios
-    .post("http://localhost/cinemabooking/CinemaBooking-Server/Controllers/create_booking.php", bookingData)
+    .post(`${BASE_URL}/create_booking`, bookingData)
     .then((res) => {
-      if (res.data.status === 201) {
+    if (res.data.status === 201 || res.data.status === 200) {
         alert("Booking confirmed successfully!");
         window.location.href = "home.html";
       } else {

@@ -1,3 +1,5 @@
+const BASE_URL = "http://localhost/CinemaBooking/CinemaBooking-Server";
+
 document.addEventListener("DOMContentLoaded", () => {
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -27,19 +29,16 @@ document.addEventListener("DOMContentLoaded", () => {
     .addEventListener("submit", handleFormSubmit);
 });
 
-
 function populateMovieDropdown() {
   axios
-    .get(
-      "http://localhost/cinemabooking/CinemaBooking-Server/Controllers/get_latest_movies.php"
-    )
+    .get(`${BASE_URL}/released_movies`)
     .then((response) => {
       const data = response.data;
       const movieSelect = document.getElementById("movie");
       movieSelect.innerHTML = '<option value="">-- Select Movie --</option>';
 
-      if (data.status === 200 && Array.isArray(data.movies)) {
-        data.movies.forEach((movie) => {
+      if (data.status === 200 && Array.isArray(data.payload.movies)) {
+        data.payload.movies.forEach((movie) => {
           const option = document.createElement("option");
           option.value = movie.id;
           option.textContent = movie.title;
@@ -54,13 +53,13 @@ function populateMovieDropdown() {
 
 function loadShowtimes() {
   axios
-    .get("http://localhost/cinemabooking/CinemaBooking-Server/Controllers/get_showtimes.php")
+    .get(`${BASE_URL}/showtimes`)
     .then((response) => {
       const tbody = document.getElementById("showtime-body");
       tbody.innerHTML = "";
 
       if (response.data.status === 200) {
-        response.data.showtimes.forEach((showtime) => {
+        response.data.payload.showtimes.forEach((showtime) => {
           const row = document.createElement("tr");
 
           row.innerHTML = `
@@ -90,10 +89,9 @@ function loadShowtimes() {
     });
 }
 
-
 function deleteShowtime(id) {
   axios
-    .delete("http://localhost/cinemabooking/CinemaBooking-Server/Controllers/delete_showtime.php", {
+    .delete(`${BASE_URL}/delete_showtime`, {
       data: { id: parseInt(id) },
     })
     .then((res) => {
@@ -110,7 +108,6 @@ function deleteShowtime(id) {
     });
 }
 
-
 function handleFormSubmit(e) {
   e.preventDefault();
 
@@ -123,10 +120,7 @@ function handleFormSubmit(e) {
   };
 
   axios
-    .post(
-      "http://localhost/cinemabooking/CinemaBooking-Server/Controllers/create_showtime.php",
-      payload
-    )
+    .post(`${BASE_URL}/create_showtime`, payload)
     .then((response) => {
       if (response.data.status === 200) {
         alert("Showtime created successfully!");

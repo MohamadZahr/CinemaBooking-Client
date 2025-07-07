@@ -1,3 +1,6 @@
+const BASE_URL = "http://localhost/CinemaBooking/CinemaBooking-Server";
+
+
 document.addEventListener("DOMContentLoaded", () => {
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -23,14 +26,14 @@ document.addEventListener("DOMContentLoaded", () => {
 function loadNowShowing() {
   axios
     .get(
-      "http://localhost/cinemabooking/CinemaBooking-Server/Controllers/get_now_showing.php"
+      `${BASE_URL}/now_showing`
     )
     .then((res) => {
       const container = document.getElementById("now-showing");
       container.innerHTML = "";
 
-      if (res.data.status === 200 && Array.isArray(res.data.now_showing)) {
-        res.data.now_showing.forEach((movie) => {
+      if (res.data.status === 200 && Array.isArray(res.data.payload.now_showing)) {
+        res.data.payload.now_showing.forEach((movie) => {
           container.appendChild(createMovieCard(movie));
         });
       } else {
@@ -43,14 +46,14 @@ function loadNowShowing() {
 function loadUpcomingMovies() {
   axios
     .get(
-      "http://localhost/cinemabooking/CinemaBooking-Server/Controllers/get_upcoming.php"
+      `${BASE_URL}/upcoming_movies`
     )
     .then((res) => {
       const container = document.getElementById("upcoming-movies");
       container.innerHTML = "";
 
-      if (res.data.status === 200 && Array.isArray(res.data.upcoming)) {
-        res.data.upcoming.forEach((movie) => {
+      if (res.data.status === 200 && Array.isArray(res.data.payload.upcoming)) {
+        res.data.payload.upcoming.forEach((movie) => {
           container.appendChild(createUpcomingMovieCard(movie));
         });
       } else {
